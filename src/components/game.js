@@ -1,10 +1,12 @@
 import { useState } from "react";
-import Card from "./card";
+import Scoreboard from "./Scoreboard";
 import leachie from '../images/leachie.jpeg'
 import galapagos from '../images/galapagos.png'
 import bearded from '../images/bearded-dragon.jpg'
 import python from '../images/green-tree-python.jpeg'
 import skink from '../images/blue-tongue-skink.jpeg'
+import Card from "./card";
+
 
 
 function Gameboard(){
@@ -14,31 +16,49 @@ function Gameboard(){
         {'title' : 'bearded dragon', 'url' : bearded},
         {'title' : 'python', 'url' : python},
         {'title' : 'blue-tongued skink', 'url' : skink},
-
     ])
+    const [clickedCards, setClickedCards] = useState([])
+    const [count, setCount] = useState(0)
+    const [highestScore, setHighestScore] = useState(0)
 
-
-    const getShuffleFn = (array) => {
-        const shuffleArray = () => {
-            let shuffledArray = []
-            while (array.length !== 0){
-                let randomIndex = Math.round(Math.random() * (array.length - 1))
-                shuffledArray.push(array[randomIndex])
-                array.splice(randomIndex, 1)
-            }
-            setReptiles(shuffledArray)
-        }
-        return shuffleArray
+    const clickHandler = (e) => {
+        let id = e.target.parentNode.lastChild.textContent
+        setReptiles(shuffleArray(reptiles))
+        keepScore(id)
     }
 
+    const shuffleArray = (array) => {
+        return [...array].sort(() => Math.random() - 0.5)
+    }
+
+    const resetGame = () => {
+        setCount(0)
+        setClickedCards([])
+    }
+
+    const keepScore = (id) => {
+        if (clickedCards.includes(id)){
+            resetGame()
+        } else {
+            setCount(count + 1)
+            setClickedCards([...clickedCards, id])
+            if (count + 1 > highestScore){
+                setHighestScore(highestScore + 1)
+            }
+        }
+    }
+    
+
     return(
-        <div>
-            <button onClick={getShuffleFn(reptiles)}>Test me</button>
-            <Card data={reptiles[0]} />
-            <Card data={reptiles[1]} />
-            <Card data={reptiles[2]} />
-            <Card data={reptiles[3]} />
-            <Card data={reptiles[4]} />
+        <div className='gameBoard'>
+            <Scoreboard current={count} highest={highestScore}/>
+            <ul className='cardHolder'>
+                <Card reptile={reptiles[0]} clickHandler={clickHandler}/>
+                <Card reptile={reptiles[1]} clickHandler={clickHandler}/>
+                <Card reptile={reptiles[2]} clickHandler={clickHandler}/>
+                <Card reptile={reptiles[3]} clickHandler={clickHandler}/>
+                <Card reptile={reptiles[4]} clickHandler={clickHandler}/>
+            </ul>
         </div>
     )
     
