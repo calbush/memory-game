@@ -1,11 +1,12 @@
-function Card(props){
-    const { data } = props
+function Card({reptile, clickHandler}){
 
     return(
-        <div className='card'>
-            <img src={data.url} alt={data.title}/>
-            <div className='cardText'>{data.title}</div>
-        </div>
+        <li>
+            <div className='card' onClick={clickHandler}>
+                <img src={reptile.url} alt={reptile.title}/>
+                <div>{reptile.title}</div>
+            </div>
+        </li>
     )
 }
 
