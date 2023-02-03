@@ -4,7 +4,7 @@ function Card({reptile, clickHandler}){
         <li>
             <div className='card' onClick={clickHandler}>
                 <img src={reptile.url} alt={reptile.title}/>
-                <div>{reptile.title}</div>
+                <div className='cardText'>{reptile.title}</div>
             </div>
         </li>
     )
