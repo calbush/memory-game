@@ -18,6 +18,11 @@ ul {
   display: flex;
 }
 
+.bullet-list {
+  list-style-type: square;
+  list-style-position: inside;
+}
+
 img {
   border-radius: 25px;
   max-width: 150px;
@@ -48,6 +53,8 @@ img {
 }
 
 .cardHolder {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
 }
 
