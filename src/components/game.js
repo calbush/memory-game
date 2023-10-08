@@ -5,6 +5,11 @@ import galapagos from '../images/galapagos.png'
 import bearded from '../images/bearded-dragon.jpg'
 import python from '../images/green-tree-python.jpeg'
 import skink from '../images/blue-tongue-skink.jpeg'
+import chameleon from '../images/chameleon.jpeg'
+import tuatara from '../images/tuatara.jpeg'
+import viper from '../images/gaboon-viper.jpeg'
+import turtle from '../images/sea-turtle.jpeg'
+import iguana from '../images/iguana.jpeg'
 import Card from "./card";
 
 
@@ -16,6 +21,11 @@ function Gameboard(){
         {'title' : 'bearded dragon', 'url' : bearded},
         {'title' : 'python', 'url' : python},
         {'title' : 'blue-tongued skink', 'url' : skink},
+        {'title' : 'chameleon', 'url' : chameleon},
+        {'title' : 'tuatara', 'url' : tuatara},
+        {'title' : 'sea turtle', 'url' : turtle},
+        {'title' : 'viper', 'url' : viper},
+        {'title' : 'iguana', 'url' : iguana}
     ])
     const [clickedCards, setClickedCards] = useState([])
     const [count, setCount] = useState(0)
@@ -53,11 +63,7 @@ function Gameboard(){
         <div className='gameBoard'>
             <Scoreboard current={count} highest={highestScore}/>
             <ul className='cardHolder'>
-                <Card reptile={reptiles[0]} clickHandler={clickHandler}/>
-                <Card reptile={reptiles[1]} clickHandler={clickHandler}/>
-                <Card reptile={reptiles[2]} clickHandler={clickHandler}/>
-                <Card reptile={reptiles[3]} clickHandler={clickHandler}/>
-                <Card reptile={reptiles[4]} clickHandler={clickHandler}/>
+                {reptiles.map(element => <Card key={element.url} reptile={element} clickHandler={clickHandler}/>)}
             </ul>
         </div>
     )
