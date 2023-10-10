@@ -11,7 +11,9 @@ import viper from '../images/gaboon-viper.jpeg'
 import turtle from '../images/sea-turtle.jpeg'
 import iguana from '../images/iguana.jpeg'
 import Card from "./card";
-
+import Gameover from "./Gameover";
+import Start from './Start'
+import Header from "./Header";
 
 
 function Gameboard(){
@@ -30,6 +32,7 @@ function Gameboard(){
     const [clickedCards, setClickedCards] = useState([])
     const [count, setCount] = useState(0)
     const [highestScore, setHighestScore] = useState(0)
+    const [gameState, setGameState] = useState('new')
 
     const clickHandler = (e) => {
         let id = e.target.parentNode.lastChild.textContent
@@ -49,6 +52,10 @@ function Gameboard(){
     const keepScore = (id) => {
         if (clickedCards.includes(id)){
             resetGame()
+            setGameState('loss')
+        } else if (count === 9){
+            setHighestScore(10)
+            setGameState('win')
         } else {
             setCount(count + 1)
             setClickedCards([...clickedCards, id])
@@ -57,16 +64,24 @@ function Gameboard(){
             }
         }
     }
-    
 
-    return(
-        <div className='gameBoard'>
-            <Scoreboard current={count} highest={highestScore}/>
-            <ul className='cardHolder'>
-                {reptiles.map(element => <Card key={element.url} reptile={element} clickHandler={clickHandler}/>)}
-            </ul>
-        </div>
-    )
+    if (gameState === 'active'){
+        return(
+            <div>
+                <Header/>
+                <div className='gameBoard'>
+                    <Scoreboard current={count} highest={highestScore}/>
+                    <ul className='cardHolder'>
+                        {reptiles.map(element => <Card key={element.url} reptile={element} clickHandler={clickHandler}/>)}
+                    </ul>
+                </div>
+            </div>
+        )
+    } else if (gameState === 'win'){
+        return <Gameover gameState={gameState} setGameState={setGameState} highestScore={highestScore}/>
+    } else if (gameState === 'loss'){
+        return <Gameover gameState={gameState} setGameState={setGameState} highestScore={highestScore}/>
+    } else return <Start setGameState={setGameState}/>
     
 }
 
