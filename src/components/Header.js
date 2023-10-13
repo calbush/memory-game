@@ -1,7 +1,7 @@
 export default function Header(){
     return (
-    <header>
-        <h1>Remember the Reptile</h1>
+    <header className="header">
+        <h1 className="h1">Remember the Reptile</h1>
     </header>
     )
 }
