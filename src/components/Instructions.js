@@ -1,5 +1,5 @@
 export default function Instructions(){
     return(
-        <div>Test your memory!</div>
+        <div className='flavor'>Don't select the same reptile twice.</div>
     )
 }
