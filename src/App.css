@@ -78,7 +78,7 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .cardHolder {
@@ -150,10 +150,18 @@ ul {
 button {
   border-radius: 15px;
   border: 2px solid var(--muted-accent);
+  width: 100px;
+  height: 30px;
+  background-color: var(--bold-accent);
+  color: var(--main-bg-color)
 }
 
 button:hover {
   transform: scale(1.15);
+}
+
+* {
+  font-family: main;
 }
 
 @media all and (width > 600px) {
@@ -188,15 +196,10 @@ button:hover {
 
 }
 
-* {
-  font-family: main;
-}
-
-@media all and (width <= 600px){
-
+@media all and (500px <= width < 700px) {
   .cardHolder {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
   }
 
@@ -209,6 +212,27 @@ button:hover {
   img {
     border-radius: 25px;
     max-width: 90px;
+    height: auto;
+  }
+}
+
+@media all and (width <= 500px){
+
+  .cardHolder {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .card {
+    width: 130px;
+    height: 130px;
+    border-radius: 15px;
+  }
+
+  img {
+    border-radius: 25px;
+    max-width: 110px;
     height: auto;
   }
 
