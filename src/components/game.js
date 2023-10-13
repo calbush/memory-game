@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Scoreboard from "./Scoreboard";
 import leachie from '../images/leachie.jpeg'
-import galapagos from '../images/galapagos.png'
+import galapagos from '../images/galapagos.jpeg'
 import bearded from '../images/bearded-dragon.jpg'
 import python from '../images/green-tree-python.jpeg'
 import skink from '../images/blue-tongue-skink.jpeg'
@@ -56,6 +56,7 @@ function Gameboard(){
         } else if (count === 9){
             setHighestScore(10)
             setGameState('win')
+            resetGame()
         } else {
             setCount(count + 1)
             setClickedCards([...clickedCards, id])
@@ -68,7 +69,6 @@ function Gameboard(){
     if (gameState === 'active'){
         return(
             <div>
-                <Header/>
                 <div className='gameBoard'>
                     <Scoreboard current={count} highest={highestScore}/>
                     <ul className='cardHolder'>
